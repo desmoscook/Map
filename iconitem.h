@@ -15,6 +15,4 @@ private:
     int height;
 };
 
-//class TrackItem : public QGraphics
-
 #endif // ICONITEM_H

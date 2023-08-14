@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file alias="car">C:/Users/lenovo/Desktop/imgs/car.png</file>
+        <file alias="map">C:/Users/lenovo/Desktop/imgs/map.png</file>
+        <file alias="people">C:/Users/lenovo/Desktop/imgs/people.png</file>
+    </qresource>
+</RCC>

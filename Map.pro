@@ -12,13 +12,13 @@ SOURCES += \
     httphandler.cpp \
     iconitem.cpp \
     main.cpp \
-    timer.cpp \
+    track.cpp \
     widget.cpp
 
 HEADERS += \
     httphandler.h \
     iconitem.h \
-    timer.h \
+    track.h \
     widget.h
 
 # Default rules for deployment.

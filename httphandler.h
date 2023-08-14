@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <utility>
+#include <QTimer>
 
 #include <QObject>
 #include <QByteArray>
@@ -30,7 +31,8 @@ public:
     void parseTrack(const QByteArray jsonString);
 
 signals:
-    void pointInfo(int id, int type, int x, int y);
+    void positionInfo(std::vector<std::pair<int, int>> rev_peoples,
+                      std::vector<std::pair<int, int>> rev_cars);
     void fenceInfo(int id, std::vector<std::pair<int, int>> points);
     void trackInfo(int id, int type, int x, int y);
 
@@ -41,6 +43,7 @@ public slots:
 private:
     QTcpServer m_server;
     QTcpSocket* m_client = nullptr;
+    QTimer connect_timer; // 长连接超时定时器
 };
 
 #endif // HTTPHANDLER_H
