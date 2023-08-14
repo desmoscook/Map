@@ -32,19 +32,31 @@ void HttpHandler::parsePosition(const QByteArray jsonString)
     QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonString);
     if (jsonDoc.isObject()) {
         QJsonObject jsonObj = jsonDoc.object();
-        if (jsonObj["flag"].toDouble() == 1) {
+        if (jsonObj["flag"].toDouble() == 1) { // 若为有效数据
+            std::vector<std::pair<int, int>> rev_peoples;
+            std::vector<std::pair<int, int>> rev_cars;
             QJsonArray position = jsonObj["position"].toArray();
             for (int i = 0; i < position.size(); i++) {
                 QJsonObject data = position[i].toObject();
-                int id = data["id"].toInt();
-                int type = data["type"].toInt();
                 QJsonArray pos = data["point"].toArray();
                 int x = pos[0].toInt();
                 int y = pos[1].toInt();
                 if (x > 928) x = 928;
                 if (y > 568) y = 568;
-                emit pointInfo(id, type, x, y);
+
+                qDebug() << "id" << data["id"].toInt();
+                qDebug() << "type:" << data["type"].toInt();
+                qDebug() << "x:" << x;
+                qDebug() << "y:" << y;
+                qDebug() << " ";
+
+                if (data["type"].toInt() == 0) {
+                    rev_peoples.push_back({x, y});
+                } else {
+                    rev_cars.push_back({x, y});
+                }
             }
+            emit positionInfo(rev_peoples, rev_cars);
         }
     }
 }
